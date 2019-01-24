@@ -60,7 +60,7 @@ public class IntercomBridge extends CordovaPlugin {
         try {
             Context context = cordova.getActivity().getApplicationContext();
 
-            CordovaHeaderInterceptor.setCordovaVersion(context, "5.1.1");
+            CordovaHeaderInterceptor.setCordovaVersion(context, "6.2.0");
 
             switch (IntercomPushManager.getInstalledModuleType()) {
                 case GCM: {
@@ -186,7 +186,8 @@ public class IntercomBridge extends CordovaPlugin {
         },
         displayConversationsList {
             @Override void performAction(JSONArray args, CallbackContext callbackContext, CordovaInterface cordova) {
-                Intercom.client().displayConversationsList();
+                LumberMill.getLogger().w("displayConversationsList is deprecated. Please use displayMessenger instead.");
+                Intercom.client().displayMessenger();
                 callbackContext.success();
             }
         },
